@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Try Intent Service</string>
+
+    <string name="launcher_page_text">Please click on the button below to kick off Intent Service</string>
+    <string name="action_settings">Settings</string>
+    <string name="launcher_page_button">Kick Off Now!!</string>
+</resources>
