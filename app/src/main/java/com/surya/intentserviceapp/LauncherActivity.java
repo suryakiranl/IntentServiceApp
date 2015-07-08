@@ -53,8 +53,11 @@ public class LauncherActivity extends ActionBarActivity {
         Toast t = Toast.makeText(getApplicationContext(), "Kicking off Intent Service with param: " + randomValue, Toast.LENGTH_SHORT);
         t.show();
 
-        Intent i = new Intent();
+        Intent intentService = new Intent(Intent.ACTION_SYNC, null, this, MyIntentService.class);
+        intentService.putExtra(MyIntentService.PARAM_BOOTUP_VALUE, randomValue);
+        intentService.setAction(MyIntentService.ACTION_BOOTUP);
 
+        startService(intentService);
 
         Log.i(TAG, "Exiting onClickKickOffNowBtn method");
     }
