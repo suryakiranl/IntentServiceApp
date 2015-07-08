@@ -24,4 +24,25 @@
         android:layout_centerHorizontal="true"
         android:onClick="onClickKickOffNowBtn" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/resultText"
+        android:layout_below="@+id/kickOffNowBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp"
+        android:text="@string/result_title" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="0"
+        android:id="@+id/resultValue"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/resultText"
+        android:layout_centerHorizontal="true"
+        android:typeface="monospace" />
+
 </RelativeLayout>

@@ -1,19 +1,24 @@
 package com.surya.intentserviceapp;
 
 import android.content.Intent;
+import android.os.Handler;
+import android.os.ResultReceiver;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Date;
 import java.util.Random;
 
+import javax.xml.transform.Result;
 
-public class LauncherActivity extends ActionBarActivity {
+
+public class LauncherActivity extends ActionBarActivity implements MyResultReceiver.Receiver {
     private static final String TAG = "LauncherActivity";
 
     @Override
@@ -54,12 +59,40 @@ public class LauncherActivity extends ActionBarActivity {
         t.show();
 
         Intent intentService = new Intent(Intent.ACTION_SYNC, null, this, MyIntentService.class);
+        MyResultReceiver resultReceiver = new MyResultReceiver(new Handler());
+        resultReceiver.setReceiver(this);
+
+        intentService.putExtra(MyIntentService.RECEIVER_CLASS, resultReceiver);
         intentService.putExtra(MyIntentService.PARAM_BOOTUP_VALUE, randomValue);
         intentService.setAction(MyIntentService.ACTION_BOOTUP);
+
+        TextView resultValue = (TextView) findViewById(R.id.resultValue);
+        resultValue.setText("Request Sent ...");
 
         startService(intentService);
 
         Log.i(TAG, "Exiting onClickKickOffNowBtn method");
     }
 
+    @Override
+    public void onReceiveResult(int resultCode, Bundle resultData) {
+        Log.i(TAG, "Inside onReceiveResult method");
+        Log.d(TAG, "Input params : resultCode = " + resultCode + ", resultData = " + resultData);
+
+        TextView resultValue = (TextView) findViewById(R.id.resultValue);
+        String text = "";
+        switch(resultCode) {
+            case MyIntentService.STATUS_RECEIVED:
+                text = "Yay!! I am accepted."; break;
+            case MyIntentService.STATUS_PROCESSING:
+                text = "Fingers crossed. I am curious about the output."; break;
+            case MyIntentService.STATUS_COMPLETED:
+                text = "Hurray!! I am done."; break;
+            default:
+                text = "Invalid result code obtained : " + resultCode;
+        }
+        resultValue.setText(text);
+
+        Log.i(TAG, "Exiting onReceiveResult method");
+    }
 }
