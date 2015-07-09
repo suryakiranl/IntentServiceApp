@@ -21,6 +21,12 @@
             android:name=".MyIntentService"
             android:exported="false" >
         </service>
+
+        <receiver
+            android:name="com.surya.intentserviceapp.MyAlarmReceiver"
+            android:enabled="true"
+            android:exported="true" >
+        </receiver>
     </application>
 
 </manifest>

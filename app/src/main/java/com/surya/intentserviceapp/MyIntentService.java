@@ -1,10 +1,16 @@
 package com.surya.intentserviceapp;
 
+import android.app.AlarmManager;
 import android.app.IntentService;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.ResultReceiver;
+import android.os.SystemClock;
 import android.util.Log;
+
+import java.util.Date;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
@@ -29,10 +35,15 @@ public class MyIntentService extends IntentService {
     }
     private ResultReceiver mResultReceiver;
 
+    private AlarmManager alarmMgr;
+    private PendingIntent pendingIntent;
+
     @Override
     protected void onHandleIntent(Intent intent) {
         Log.i(TAG, "FDN-PM Service Started!!");
         Log.i(TAG, "Inside onHandleIntent method. Intent = " + intent);
+        setRecurringAlarm();
+
         if (intent == null) {
             Log.e(TAG, "Whoops!! Intent passed into " + TAG + " is NULL!");
             return;
@@ -68,6 +79,7 @@ public class MyIntentService extends IntentService {
         } else {
             Log.e(TAG, "Error :: Invalid action value = " + action);
         }
+
         Log.i(TAG, "Exiting onHandleIntent method");
         Log.i(TAG, "FDN-PM Service Ended!!");
     }
@@ -130,5 +142,25 @@ public class MyIntentService extends IntentService {
         }
     }
 
+    /**
+     * This method will set a recurring alarm for the AlarmManager to
+     * invoke a pending intent.
+     */
+    private void setRecurringAlarm() {
+        Log.i(TAG, ">>> Inside setRecurringAlarm method");
 
+        long millis = 60 * 1000;
+
+        Intent intent = new Intent(this, MyAlarmReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 123456, intent, 0);
+
+        alarmMgr = (AlarmManager) getApplicationContext().getSystemService(Context.ALARM_SERVICE);
+        alarmMgr.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, // Type of Alarm
+                SystemClock.elapsedRealtime() + millis , // Starting when
+                millis, // What frequency?
+                pendingIntent);
+        Log.d(TAG, "Alarm manager used to set a recurring alarm to repeat every " + millis + " milliseconds");
+
+        Log.i(TAG, "<<< Exiting setRecurringAlarm method");
+    }
 }
