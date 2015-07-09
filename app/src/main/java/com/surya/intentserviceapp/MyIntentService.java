@@ -72,6 +72,12 @@ public class MyIntentService extends IntentService {
         Log.i(TAG, "FDN-PM Service Ended!!");
     }
 
+    /**
+     * This function handles actions that happen during boot up.
+     *
+     * @param param - Parameter from caller
+     * @return - Calculated value
+     */
     private int handleBootup(int param) {
         Log.i(TAG, "Inside handleBootup method. Param = " + param);
 
@@ -85,9 +91,22 @@ public class MyIntentService extends IntentService {
         return nextVal;
     }
 
+    /**
+     * Utility method to send status updates to the registered receiver.
+     *
+     * @param code - Integer Code defining status
+     * @param message - Actual text message
+     * @param value - Extra Integer value to be sent if any
+     */
     private void sendUpdateToReceiver(int code, String message, int... value) {
         Log.i(TAG, "Inside sendUpdateToReceiver method");
         Log.d(TAG, "Params: code = " + code + ", message = " + message + ", value = " + value);
+
+        if(mResultReceiver == null) {
+            Log.e(TAG, "Cannot send response as receiver is not initialized.");
+            return;
+        }
+
         Bundle mBundle = new Bundle();
         mBundle.putString(RESULT_STRING_KEY, message);
         if(value.length > 0) {
@@ -98,6 +117,11 @@ public class MyIntentService extends IntentService {
         Log.i(TAG, "Exiting sendUpdateToReceiver method");
     }
 
+    /**
+     * Utility method to sleep the current Thread
+     *
+     * @param millis - Number in milli seconds to sleep the thread for.
+     */
     private void sleep(long millis) {
         try {
             Thread.sleep(millis);
@@ -105,4 +129,6 @@ public class MyIntentService extends IntentService {
             Log.e(TAG, "Error when waiting for thread to sleep", e);
         }
     }
+
+
 }
