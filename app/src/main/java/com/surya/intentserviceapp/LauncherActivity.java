@@ -1,10 +1,9 @@
 package com.surya.intentserviceapp;
 
 import android.content.Intent;
-import android.os.Handler;
-import android.os.ResultReceiver;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,8 +13,6 @@ import android.widget.Toast;
 
 import java.util.Date;
 import java.util.Random;
-
-import javax.xml.transform.Result;
 
 
 public class LauncherActivity extends ActionBarActivity implements MyResultReceiver.Receiver {
@@ -94,5 +91,13 @@ public class LauncherActivity extends ActionBarActivity implements MyResultRecei
         resultValue.setText(text);
 
         Log.i(TAG, "Exiting onReceiveResult method");
+    }
+
+    public void onNextPageClick(View view) {
+        Log.i(TAG, "Inside onNextPageClick method");
+        Intent nextPage = new Intent(getApplicationContext(), SecondPageActivity.class);
+        nextPage.setAction(SecondPageActivity.ACTION_NAVIGATE);
+        startActivity(nextPage);
+        Log.i(TAG, "Exiting onNextPageClick method");
     }
 }

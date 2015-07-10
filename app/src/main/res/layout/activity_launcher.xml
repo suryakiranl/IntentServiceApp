@@ -7,32 +7,32 @@
 
     <TextView android:text="@string/launcher_page_text" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="169dp"
+        android:layout_marginTop="49dp"
         android:textColor="@color/primary_material_dark"
         android:textSize="@dimen/abc_text_size_medium_material"
         android:textAlignment="center"
-        android:id="@+id/launcherPageText" />
+        android:id="@+id/launcherPageText"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/launcher_page_button"
         android:id="@+id/kickOffNowBtn"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="onClickKickOffNowBtn" />
+        android:onClick="onClickKickOffNowBtn"
+        android:layout_below="@+id/launcherPageText"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/resultText"
+        android:text="@string/result_title"
         android:layout_below="@+id/kickOffNowBtn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="33dp"
-        android:text="@string/result_title" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="29dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -40,9 +40,18 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="0"
         android:id="@+id/resultValue"
-        android:layout_marginTop="30dp"
+        android:typeface="monospace"
         android:layout_below="@+id/resultText"
-        android:layout_centerHorizontal="true"
-        android:typeface="monospace" />
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Second Page"
+        android:id="@+id/button2"
+        android:layout_below="@+id/resultValue"
+        android:layout_alignEnd="@+id/kickOffNowBtn"
+        android:layout_marginTop="106dp"
+        android:onClick="onNextPageClick" />
 
 </RelativeLayout>

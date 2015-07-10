@@ -23,10 +23,19 @@
         </service>
 
         <receiver
-            android:name="com.surya.intentserviceapp.MyAlarmReceiver"
+            android:name=".MyAlarmReceiver"
             android:enabled="true"
             android:exported="true" >
         </receiver>
+
+        <activity
+            android:name=".SecondPageActivity"
+            android:label="@string/title_activity_second_page"
+            android:parentActivityName=".LauncherActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.surya.intentserviceapp.LauncherActivity" />
+        </activity>
     </application>
 
 </manifest>
