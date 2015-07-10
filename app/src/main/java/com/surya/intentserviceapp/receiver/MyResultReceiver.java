@@ -1,4 +1,4 @@
-package com.surya.intentserviceapp;
+package com.surya.intentserviceapp.receiver;
 
 import android.os.Bundle;
 import android.os.Handler;

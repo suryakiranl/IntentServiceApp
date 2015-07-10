@@ -1,4 +1,4 @@
-package com.surya.intentserviceapp;
+package com.surya.intentserviceapp.activity;
 
 import android.app.Activity;
 import android.app.NotificationManager;
@@ -9,6 +9,8 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import com.surya.intentserviceapp.R;
 
 
 public class SecondPageActivity extends Activity {

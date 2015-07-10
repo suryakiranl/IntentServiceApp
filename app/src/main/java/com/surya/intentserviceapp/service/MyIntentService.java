@@ -1,4 +1,4 @@
-package com.surya.intentserviceapp;
+package com.surya.intentserviceapp.service;
 
 import android.app.AlarmManager;
 import android.app.IntentService;
@@ -10,7 +10,7 @@ import android.os.ResultReceiver;
 import android.os.SystemClock;
 import android.util.Log;
 
-import java.util.Date;
+import com.surya.intentserviceapp.receiver.MyAlarmReceiver;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in

@@ -1,4 +1,4 @@
-package com.surya.intentserviceapp;
+package com.surya.intentserviceapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.surya.intentserviceapp.service.MyIntentService;
+import com.surya.intentserviceapp.receiver.MyResultReceiver;
+import com.surya.intentserviceapp.R;
 
 import java.util.Date;
 import java.util.Random;

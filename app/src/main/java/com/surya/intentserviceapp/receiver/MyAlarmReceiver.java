@@ -1,4 +1,4 @@
-package com.surya.intentserviceapp;
+package com.surya.intentserviceapp.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
