@@ -42,4 +42,34 @@
         android:layout_alignBottom="@+id/textView2"
         android:layout_toEndOf="@+id/textView2" />
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="List All Notifications"
+        android:id="@+id/showNotificationsBtn"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="onListAllNotificationsClick" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Posted Notif ID"
+        android:id="@+id/textView3"
+        android:layout_above="@+id/showNotificationsBtn"
+        android:layout_toStartOf="@+id/statusText"
+        android:layout_below="@+id/textView2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="0"
+        android:id="@+id/notifId"
+        android:layout_alignStart="@+id/statusText"
+        android:layout_above="@+id/showNotificationsBtn"
+        android:layout_alignTop="@+id/textView3" />
+
 </RelativeLayout>
