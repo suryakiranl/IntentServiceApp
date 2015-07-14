@@ -36,6 +36,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.LauncherActivity" />
         </activity>
+        <activity
+            android:name=".activity.FdnListActivity"
+            android:label="@string/title_activity_fdn_list"
+            android:parentActivityName=".activity.SecondPageActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.surya.intentserviceapp.activity.SecondPageActivity" />
+        </activity>
+        <activity
+            android:name=".activity.FdnDetailsActivity"
+            android:label="@string/title_activity_fdn_details" >
+        </activity>
     </application>
 
 </manifest>

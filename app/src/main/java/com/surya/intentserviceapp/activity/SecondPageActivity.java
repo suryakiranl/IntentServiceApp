@@ -117,10 +117,9 @@ public class SecondPageActivity extends Activity {
     public void onListAllNotificationsClick(View view) {
         Log.i(TAG, "Inside onListAllNotificationsClick method");
 
-        IFdnDAO fdnDao = DAOFactory.getInstance().getFdnDAO(getApplicationContext());
-        fdnDao.open();
-        List<FdnDTO> fdns = fdnDao.loadAll();
-        fdnDao.close();
+        Intent listActivityIntent = new Intent(getApplicationContext(), FdnListActivity.class);
+        listActivityIntent.setAction(FdnListActivity.LOAD_FDN_LIST);
+        startActivity(listActivityIntent);
 
         Log.i(TAG, "Exiting onListAllNotificationsClick method");
     }

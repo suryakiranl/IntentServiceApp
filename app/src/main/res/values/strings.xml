@@ -8,4 +8,10 @@
     <string name="title_activity_second_page">SecondPageActivity</string>
 
     <string name="second_page_header_text">You are on the second page. Click the button below to post a notification</string>
+    <string name="title_activity_fdn_list">FdnListActivity</string>
+
+    <string name="fdn_list_header_text">Following are the list of FDNs processed:</string>
+    <string name="title_activity_fdn_details">FdnDetailsActivity</string>
+
+    <string name="fdn_details_header_text">Details of the selected FDN:</string>
 </resources>
