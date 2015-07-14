@@ -131,6 +131,10 @@ public class FdnDTO implements Serializable {
         return userActionTimestamp == null ? 0 : userActionTimestamp.getTime();
     }
 
+    public void setUserActionTimeAsLong(long timeAsLong) {
+        this.userActionTimestamp = getDate(timeAsLong);
+    }
+
     public void setUserActionTimestamp(Date userActionTimestamp) {
         this.userActionTimestamp = userActionTimestamp;
     }
@@ -140,7 +144,11 @@ public class FdnDTO implements Serializable {
     }
 
     public long getCreatedTimeAsLong() {
-        return createdTimestamp == null ? 0 : createdTimestamp.getTime();
+        return createdTimestamp == null ? new Date().getTime() : createdTimestamp.getTime();
+    }
+
+    public void setCreatedTimeAsLong(long timeAsLong) {
+        this.createdTimestamp = getDate(timeAsLong);
     }
 
     public void setCreatedTimestamp(Date createdTimestamp) {
@@ -155,6 +163,10 @@ public class FdnDTO implements Serializable {
         return modifiedTimestamp == null ? 0 : modifiedTimestamp.getTime();
     }
 
+    public void setModifiedTimeAsLong(long timeAsLong) {
+        this.modifiedTimestamp = getDate(timeAsLong);
+    }
+
     public void setModifiedTimestamp(Date modifiedTimestamp) {
         this.modifiedTimestamp = modifiedTimestamp;
     }
@@ -167,7 +179,15 @@ public class FdnDTO implements Serializable {
         return lastDisplayedTimestamp == null ? 0 : lastDisplayedTimestamp.getTime();
     }
 
+    public void setLastDisplayedTimeAsLong(long timeAsLong) {
+        this.lastDisplayedTimestamp = getDate(timeAsLong);
+    }
+
     public void setLastDisplayedTimestamp(Date lastDisplayedTimestamp) {
         this.lastDisplayedTimestamp = lastDisplayedTimestamp;
+    }
+
+    private Date getDate(long time) {
+        return time == 0 ? null : new Date(time);
     }
 }

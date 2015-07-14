@@ -176,10 +176,10 @@ public class FdnDAOImpl implements IFdnDAO {
                 fdn.setDisplayCount(results.getInt(7));
                 fdn.setIsConsumedByUser(results.getInt(8));
                 fdn.setUserAction(results.getString(9));
-                fdn.setUserActionTimestamp(new Date(results.getLong(10)));
-                fdn.setCreatedTimestamp(new Date(results.getLong(11)));
-                fdn.setModifiedTimestamp(new Date(results.getLong(12)));
-                fdn.setLastDisplayedTimestamp(new Date(results.getLong(13)));
+                fdn.setUserActionTimeAsLong(results.getLong(10));
+                fdn.setCreatedTimeAsLong(results.getLong(11));
+                fdn.setModifiedTimeAsLong(results.getLong(12));
+                fdn.setLastDisplayedTimeAsLong(results.getLong(13));
 
                 results.moveToNext();
 
