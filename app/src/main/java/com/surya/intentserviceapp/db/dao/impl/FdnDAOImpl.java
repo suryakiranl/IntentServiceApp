@@ -68,6 +68,8 @@ public class FdnDAOImpl implements IFdnDAO {
         Log.i(TAG, "Inside create method");
         Log.d(TAG, "Input params = " + fdn.toString());
 
+        if(!isDBConnected()) return null;
+
         ContentValues params = new ContentValues();
         params.put(DatabaseHelper.COL_ANDROID_PRIORITY, fdn.getAndroidPriority());
         params.put(DatabaseHelper.COL_CONTENT_TEXT, fdn.getContentText());
@@ -83,12 +85,6 @@ public class FdnDAOImpl implements IFdnDAO {
         params.put(DatabaseHelper.COL_USER_ACTION, fdn.getUserAction());
         params.put(DatabaseHelper.COL_USER_ACTION_TIMESTAMP, fdn.getUserActionTimeAsLong());
 
-        boolean didWeOpenDBNow = false;
-        if(db == null) {
-            open();
-            didWeOpenDBNow = true;
-        }
-
         long insertedRowId = db.insert(DatabaseHelper.TBL_INCOMING_FDN, null, params);
         String[] selectionArgs = { insertedRowId + "" };
         Cursor results = db.query(DatabaseHelper.TBL_INCOMING_FDN, // Table Name
@@ -103,15 +99,10 @@ public class FdnDAOImpl implements IFdnDAO {
                     "Unsuccessful to fetch newly inserted record with ID = " + insertedRowId);
         }
 
-        Log.d(TAG, "Count of records fetched = " + results.getCount());
-        results.moveToFirst();
-        List<FdnDTO> fdns = convert(results);
+        List<FdnDTO> fdns = processResultsContainingAllColumns(results);
         fdn = fdns.get(0);
 
         results.close();
-        if(didWeOpenDBNow) {
-            close();
-        }
 
         Log.d(TAG, "Return value = " + fdn.toString());
         Log.i(TAG, "Inside create method");
@@ -123,9 +114,47 @@ public class FdnDAOImpl implements IFdnDAO {
     public FdnDTO update(FdnDTO fdn) {
         Log.i(TAG, "Inside update method");
 
+        if(!isDBConnected()) return null;
 
         Log.i(TAG, "Inside update method");
         return fdn;
+    }
+
+    public List<FdnDTO> loadAll() {
+        Log.i(TAG, "Inside loadAll method");
+
+        if(!isDBConnected()) return null;
+
+        List<FdnDTO> fdns = new ArrayList<FdnDTO>();
+
+        Cursor results = db.query(DatabaseHelper.TBL_INCOMING_FDN, // Table Name
+                ALL_COLUMNS, // Selection Columns
+                null, // Selection Criterion
+                null, // Selection Arguments
+                null, // Group by
+                null, // Having clause
+                DatabaseHelper.COL_ID); // Order by
+        fdns = processResultsContainingAllColumns(results);
+
+        Log.d(TAG, "Return value = " + fdns);
+        Log.i(TAG, "Exiting loadAll method");
+        return fdns;
+    }
+
+    private List<FdnDTO> processResultsContainingAllColumns(Cursor results) {
+        Log.i(TAG, "Inside processResultsContainingAllColumns method");
+        List<FdnDTO> fdns = new ArrayList<FdnDTO>();
+
+        if(results == null || results.getCount() == 0) {
+            Log.i(TAG, "No records fetched from database.");
+        } else {
+            Log.d(TAG, "Count of records fetched = " + results.getCount());
+            results.moveToFirst();
+            fdns = convert(results);
+        }
+
+        Log.i(TAG, "Exiting processResultsContainingAllColumns method");
+        return fdns;
     }
 
     private List<FdnDTO> convert(Cursor results) {
@@ -158,5 +187,13 @@ public class FdnDAOImpl implements IFdnDAO {
 
         Log.i(TAG, "Inside convert method");
         return fdns;
+    }
+
+    private boolean isDBConnected() {
+        if(db == null) {
+            Log.e(TAG, "Database connection not initialized.");
+        }
+
+        return db == null;
     }
 }

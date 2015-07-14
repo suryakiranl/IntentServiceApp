@@ -4,6 +4,8 @@ import android.database.sqlite.SQLiteException;
 
 import com.surya.intentserviceapp.dto.FdnDTO;
 
+import java.util.List;
+
 /**
  * Created by suryak on 7/11/15.
  */
@@ -17,4 +19,6 @@ public interface IFdnDAO {
     FdnDTO create(FdnDTO fdn);
 
     FdnDTO update(FdnDTO fdn);
+
+    List<FdnDTO> loadAll();
 }

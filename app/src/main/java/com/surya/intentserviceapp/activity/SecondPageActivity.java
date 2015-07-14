@@ -15,6 +15,7 @@ import com.surya.intentserviceapp.db.dao.DAOFactory;
 import com.surya.intentserviceapp.db.dao.IFdnDAO;
 import com.surya.intentserviceapp.dto.FdnDTO;
 
+import java.util.List;
 import java.util.Random;
 
 
@@ -105,7 +106,9 @@ public class SecondPageActivity extends Activity {
         Log.i(TAG, "Inside saveFdn method");
 
         IFdnDAO fdnDao = DAOFactory.getInstance().getFdnDAO(getApplicationContext());
+        fdnDao.open();
         fdn = fdnDao.save(fdn);
+        fdnDao.close();
 
         Log.i(TAG, "Exiting saveFdn method");
         return fdn;
@@ -114,7 +117,10 @@ public class SecondPageActivity extends Activity {
     public void onListAllNotificationsClick(View view) {
         Log.i(TAG, "Inside onListAllNotificationsClick method");
 
-
+        IFdnDAO fdnDao = DAOFactory.getInstance().getFdnDAO(getApplicationContext());
+        fdnDao.open();
+        List<FdnDTO> fdns = fdnDao.loadAll();
+        fdnDao.close();
 
         Log.i(TAG, "Exiting onListAllNotificationsClick method");
     }
