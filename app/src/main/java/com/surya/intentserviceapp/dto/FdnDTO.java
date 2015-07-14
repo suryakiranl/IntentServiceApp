@@ -1,11 +1,12 @@
 package com.surya.intentserviceapp.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by suryak on 7/10/15.
  */
-public class FdnDTO {
+public class FdnDTO implements Serializable {
     private long id;
     private String fdnId;
     private String icon;
