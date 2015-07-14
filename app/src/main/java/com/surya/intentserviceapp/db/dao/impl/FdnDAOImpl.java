@@ -39,11 +39,13 @@ public class FdnDAOImpl implements IFdnDAO {
     @Override
     public void open() throws SQLiteException {
         db = dbHelper.getWritableDatabase();
+        Log.i(TAG, "Connected to DB in write mode.");
     }
 
     @Override
     public void close() {
         db.close();
+        Log.i(TAG, "DB Connection Closed.");
     }
 
     @Override
@@ -104,8 +106,8 @@ public class FdnDAOImpl implements IFdnDAO {
 
         results.close();
 
-        Log.d(TAG, "Return value = " + fdn.toString());
-        Log.i(TAG, "Inside create method");
+        Log.d(TAG, "Return value = " + fdn);
+        Log.i(TAG, "Exiting create method");
 
         return fdn;
     }
@@ -162,27 +164,28 @@ public class FdnDAOImpl implements IFdnDAO {
         List<FdnDTO> fdns = new ArrayList<FdnDTO>();
 
         if(results != null) {
-            FdnDTO fdn = new FdnDTO();
-            fdn.setId(results.getLong(0));
-            fdn.setFdnId(results.getString(1));
-            fdn.setIcon(results.getString(2));
-            fdn.setContentTitle(results.getString(3));
-            fdn.setContentText(results.getString(4));
-            fdn.setAndroidPriority(results.getInt(5));
-            fdn.setIsDisplayed(results.getInt(6));
-            fdn.setDisplayCount(results.getInt(7));
-            fdn.setIsConsumedByUser(results.getInt(8));
-            fdn.setUserAction(results.getString(9));
-            fdn.setUserActionTimestamp(new Date(results.getLong(10)));
-            fdn.setCreatedTimestamp(new Date(results.getLong(11)));
-            fdn.setModifiedTimestamp(new Date(results.getLong(12)));
-            fdn.setLastDisplayedTimestamp(new Date(results.getLong(13)));
+            do {
+                FdnDTO fdn = new FdnDTO();
+                fdn.setId(results.getLong(0));
+                fdn.setFdnId(results.getString(1));
+                fdn.setIcon(results.getString(2));
+                fdn.setContentTitle(results.getString(3));
+                fdn.setContentText(results.getString(4));
+                fdn.setAndroidPriority(results.getInt(5));
+                fdn.setIsDisplayed(results.getInt(6));
+                fdn.setDisplayCount(results.getInt(7));
+                fdn.setIsConsumedByUser(results.getInt(8));
+                fdn.setUserAction(results.getString(9));
+                fdn.setUserActionTimestamp(new Date(results.getLong(10)));
+                fdn.setCreatedTimestamp(new Date(results.getLong(11)));
+                fdn.setModifiedTimestamp(new Date(results.getLong(12)));
+                fdn.setLastDisplayedTimestamp(new Date(results.getLong(13)));
 
-            if(!results.isAfterLast()) {
                 results.moveToNext();
-            }
 
-            fdns.add(fdn);
+                fdns.add(fdn);
+            } while(!results.isAfterLast());
+
         }
 
         Log.i(TAG, "Inside convert method");
@@ -194,6 +197,6 @@ public class FdnDAOImpl implements IFdnDAO {
             Log.e(TAG, "Database connection not initialized.");
         }
 
-        return db == null;
+        return db != null;
     }
 }
