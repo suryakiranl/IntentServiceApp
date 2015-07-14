@@ -16,8 +16,8 @@
         android:layout_alignParentStart="true" />
 
     <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/fdnDetailsTitle"
         android:layout_marginTop="15dp"
         android:stretchColumns="1"
@@ -33,7 +33,7 @@
                 android:text="-"
                 android:id="@+id/idValue"
                 android:padding="3dp"
-                android:gravity="center_horizontal" />
+                 />
         </TableRow>
 
         <TableRow>
@@ -46,20 +46,25 @@
                 android:text="-"
                 android:id="@+id/fdnId"
                 android:padding="3dp"
-                android:gravity="center_horizontal" />
+                 />
         </TableRow>
 
         <TableRow>
             <TextView
                 android:text="Content Title"
                 android:padding="3dp"
-                android:gravity="left" />
+                android:gravity="left"
+                />
 
             <TextView
                 android:text="-"
                 android:id="@+id/contentTitle"
                 android:padding="3dp"
-                android:gravity="center_horizontal" />
+                android:gravity="left"
+                android:layout_height="fill_parent"
+                android:layout_width="wrap_content"
+                android:maxLines="4"
+                android:lines="4"/>
         </TableRow>
 
         <TableRow>
@@ -72,7 +77,11 @@
                 android:text="-"
                 android:id="@+id/contentText"
                 android:padding="3dp"
-                android:gravity="center_horizontal" />
+                android:gravity="left"
+                android:layout_height="fill_parent"
+                android:layout_width="wrap_content"
+                android:maxLines="4"
+                android:lines="4"/>
         </TableRow>
 
         <TableRow>
@@ -85,7 +94,7 @@
                 android:text="-"
                 android:id="@+id/andrPriority"
                 android:padding="3dp"
-                android:gravity="center_horizontal" />
+                 />
         </TableRow>
 
         <TableRow>
@@ -98,7 +107,7 @@
                 android:text="-"
                 android:id="@+id/isDisplayed"
                 android:padding="3dp"
-                android:gravity="center_horizontal" />
+                 />
         </TableRow>
 
         <TableRow>
@@ -111,7 +120,7 @@
                 android:text="-"
                 android:id="@+id/displayCount"
                 android:padding="3dp"
-                android:gravity="center_horizontal" />
+                 />
         </TableRow>
 
         <TableRow>
@@ -124,7 +133,7 @@
                 android:text="-"
                 android:id="@+id/isConsumedByUser"
                 android:padding="3dp"
-                android:gravity="center_horizontal" />
+                 />
         </TableRow>
 
         <TableRow>
@@ -137,7 +146,7 @@
                 android:text="-"
                 android:id="@+id/userAction"
                 android:padding="3dp"
-                android:gravity="center_horizontal" />
+                 />
         </TableRow>
 
         <TableRow>
@@ -150,7 +159,7 @@
                 android:text="-"
                 android:id="@+id/userActionTimestamp"
                 android:padding="3dp"
-                android:gravity="center_horizontal" />
+                 />
         </TableRow>
 
         <TableRow>
@@ -163,7 +172,7 @@
                 android:text="-"
                 android:id="@+id/createdTimestamp"
                 android:padding="3dp"
-                android:gravity="center_horizontal" />
+                 />
         </TableRow>
 
         <TableRow>
@@ -176,7 +185,7 @@
                 android:text="-"
                 android:id="@+id/modifiedTimestamp"
                 android:padding="3dp"
-                android:gravity="center_horizontal" />
+                 />
         </TableRow>
 
         <TableRow>
@@ -189,7 +198,7 @@
                 android:text="-"
                 android:id="@+id/lastDisplayedTimestamp"
                 android:padding="3dp"
-                android:gravity="center_horizontal" />
+                 />
         </TableRow>
 
     </TableLayout>

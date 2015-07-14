@@ -15,8 +15,10 @@ import com.surya.intentserviceapp.db.dao.DAOFactory;
 import com.surya.intentserviceapp.db.dao.IFdnDAO;
 import com.surya.intentserviceapp.dto.FdnDTO;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 
 public class SecondPageActivity extends Activity {
@@ -25,6 +27,7 @@ public class SecondPageActivity extends Activity {
     private static final String ACTION_CLICK = "com.surya-SecondPageActivity.ACTION_CLICK";
     private static final String ACTION_DISMISS = "com.surya-SecondPageActivity.ACTION_DISMISS";
     private int notificationId = 1;
+    private static Set<Integer> fdnIDs = new HashSet<Integer>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +62,14 @@ public class SecondPageActivity extends Activity {
 
         Random r = new Random();
         FdnDTO fdn = new FdnDTO();
-        int notificationNumber = r.nextInt(20);
+        int notificationNumber = 0;
+        do {
+            notificationNumber = r.nextInt(20);
+        } while(!fdnIDs.add(notificationNumber));
+
         fdn.setFdnId("FDN_" + notificationNumber);
-        fdn.setContentTitle("Title " + notificationNumber);
-        fdn.setContentText("Text for " + notificationNumber);
+        fdn.setContentTitle("Use chop-chop to turn flash light ON :)");
+        fdn.setContentText("There is a new way to turn the flash light ON. Follow me for more details.");
 
         fdn = saveFdn(fdn);
         postNotificationToTray(fdn);
@@ -82,9 +89,8 @@ public class SecondPageActivity extends Activity {
                 .setContentText(fdn.getContentText())
                 .setPriority(fdn.getAndroidPriority());
 
-        Intent onClickIntent = new Intent(this, SecondPageActivity.class);
-        onClickIntent.setAction(ACTION_CLICK);
-        onClickIntent.putExtra(ACTION_CLICK, fdn.getContentTitle() + " clicked");
+        Intent onClickIntent = new Intent(this, FdnDetailsActivity.class);
+        onClickIntent.putExtra(FdnDetailsActivity.PARAM_FDN, fdn);
         PendingIntent onClickPendingIntent = PendingIntent.getActivity(getApplicationContext(), 12345, onClickIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Intent onClearIntent = new Intent(this, SecondPageActivity.class);
