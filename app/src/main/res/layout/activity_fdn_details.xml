@@ -6,4 +6,192 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.surya.intentserviceapp.activity.FdnDetailsActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/fdn_details_header_text"
+        android:id="@+id/fdnDetailsTitle"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/fdnDetailsTitle"
+        android:layout_marginTop="15dp"
+        android:stretchColumns="1"
+        android:id="@+id/fdnDetailsTbl">
+
+        <TableRow>
+            <TextView
+                android:text="ID"
+                android:padding="3dp"
+                android:gravity="left" />
+
+            <TextView
+                android:text="-"
+                android:id="@+id/idValue"
+                android:padding="3dp"
+                android:gravity="center_horizontal" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="FDN ID"
+                android:padding="3dp"
+                android:gravity="left" />
+
+            <TextView
+                android:text="-"
+                android:id="@+id/fdnId"
+                android:padding="3dp"
+                android:gravity="center_horizontal" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Content Title"
+                android:padding="3dp"
+                android:gravity="left" />
+
+            <TextView
+                android:text="-"
+                android:id="@+id/contentTitle"
+                android:padding="3dp"
+                android:gravity="center_horizontal" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Content Text"
+                android:padding="3dp"
+                android:gravity="left" />
+
+            <TextView
+                android:text="-"
+                android:id="@+id/contentText"
+                android:padding="3dp"
+                android:gravity="center_horizontal" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Android Priority"
+                android:padding="3dp"
+                android:gravity="left" />
+
+            <TextView
+                android:text="-"
+                android:id="@+id/andrPriority"
+                android:padding="3dp"
+                android:gravity="center_horizontal" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Displayed?"
+                android:padding="3dp"
+                android:gravity="left" />
+
+            <TextView
+                android:text="-"
+                android:id="@+id/isDisplayed"
+                android:padding="3dp"
+                android:gravity="center_horizontal" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Display Count"
+                android:padding="3dp"
+                android:gravity="left" />
+
+            <TextView
+                android:text="-"
+                android:id="@+id/displayCount"
+                android:padding="3dp"
+                android:gravity="center_horizontal" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Consumed by user?"
+                android:padding="3dp"
+                android:gravity="left" />
+
+            <TextView
+                android:text="-"
+                android:id="@+id/isConsumedByUser"
+                android:padding="3dp"
+                android:gravity="center_horizontal" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="User Action"
+                android:padding="3dp"
+                android:gravity="left" />
+
+            <TextView
+                android:text="-"
+                android:id="@+id/userAction"
+                android:padding="3dp"
+                android:gravity="center_horizontal" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="User Action TS"
+                android:padding="3dp"
+                android:gravity="left" />
+
+            <TextView
+                android:text="-"
+                android:id="@+id/userActionTimestamp"
+                android:padding="3dp"
+                android:gravity="center_horizontal" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Created Timestamp"
+                android:padding="3dp"
+                android:gravity="left" />
+
+            <TextView
+                android:text="-"
+                android:id="@+id/createdTimestamp"
+                android:padding="3dp"
+                android:gravity="center_horizontal" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Modified Timestamp"
+                android:padding="3dp"
+                android:gravity="left" />
+
+            <TextView
+                android:text="-"
+                android:id="@+id/modifiedTimestamp"
+                android:padding="3dp"
+                android:gravity="center_horizontal" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Last Displayed Timestamp"
+                android:padding="3dp"
+                android:gravity="left" />
+
+            <TextView
+                android:text="-"
+                android:id="@+id/lastDisplayedTimestamp"
+                android:padding="3dp"
+                android:gravity="center_horizontal" />
+        </TableRow>
+
+    </TableLayout>
+
 </RelativeLayout>

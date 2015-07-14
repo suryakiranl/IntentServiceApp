@@ -52,8 +52,9 @@ public class FdnListActivity extends Activity {
                 FdnDTO fdn = (FdnDTO) fdnListView.getItemAtPosition(position);
                 Log.i(TAG, "Item Clicked == " + fdn);
 
-                Intent detailedView = new Intent(getApplicationContext(), SecondPageActivity.class);
-
+                Intent detailedView = new Intent(getApplicationContext(), FdnDetailsActivity.class);
+                detailedView.putExtra(FdnDetailsActivity.PARAM_FDN, fdn);
+                startActivity(detailedView);
             }
         });
 
